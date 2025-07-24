@@ -7,7 +7,10 @@ WORKDIR /app
 # 3. Kopiramo JAR fajl iz target foldera u kontejner
 COPY target/IT355-L13-cardatabase-backend-0.0.1-SNAPSHOT.jar app.jar
 
-# 4. Otvaramo port aplikacije
+# 4. Aktivacija prod profila
+ENV SPRING_PROFILES_ACTIVE=prod
+
+# 5. Otvaramo port aplikacije
 EXPOSE 8080
 
 # 5. Pokrećemo Spring Boot aplikaciju
