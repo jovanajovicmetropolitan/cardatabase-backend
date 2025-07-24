@@ -39,3 +39,9 @@ jobs:
       - name: Push Docker image to Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/cardatabase-backend:latest
         # Šalje image na Docker Hub (repo će se automatski kreirati ukoliko ne postoji)
+
+      - name: Trigger Render Deploy
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_BACKEND_SERVICE_ID }}/deploys" \
+          -H "Accept: application/json" \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
